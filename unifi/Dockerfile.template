@@ -1,0 +1,13 @@
+FROM balenalib/%%BALENA_MACHINE_NAME%%-debian-openjdk:8
+
+RUN	\ 
+	curl -o /etc/apt/trusted.gpg.d/unifi-repo.gpg https://dl.ui.com/unifi/unifi-repo.gpg && \
+	echo 'deb http://www.ui.com/downloads/unifi/debian stable ubiquiti' | tee /etc/apt/sources.list.d/unifi.list && \
+	install_packages mongodb-server unifi  
+
+WORKDIR  /usr/lib/unifi
+
+COPY start.sh /usr/src/
+RUN chmod +x /usr/src/start.sh
+
+CMD [ "/bin/bash", "/usr/src/start.sh" ]

@@ -1,0 +1,19 @@
+version: '2'
+
+services:
+  unifi:
+    build: ./unifi
+    restart: on-failure
+    ports:
+      - 8080:8080
+      - 8081:8081
+      - 8443:8443
+      - 8843:8843 
+      - 8880:8880
+    volumes:
+      - unifi:/usr/lib/unifi/data
+      - unifi:/usr/lib/unifi/run
+      - unifi:/usr/lib/unifi/log
+
+volumes:
+  unifi:
