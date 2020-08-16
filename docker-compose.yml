@@ -26,7 +26,17 @@ services:
     volumes:
       - www-data:/var/www
 
+  spotify:
+    build: ./balena-sound/spotify
+    restart: on-failure
+    network_mode: host
+    privileged: true
+    volumes:
+      - spotifycache:/var/cache/raspotify
+
 volumes:
 
   unifi:
   www-data:
+  spotifycache:
+
