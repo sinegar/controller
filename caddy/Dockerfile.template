@@ -1,0 +1,14 @@
+FROM balenalib/%%BALENA_MACHINE_NAME%%-debian
+
+RUN	\ 
+	echo "deb [trusted=yes] https://apt.fury.io/caddy/ /"  | sudo tee -a /etc/apt/sources.list.d/caddy-fury.list $$ \
+	install_packages caddy 
+
+#WORKDIR  /usr
+
+COPY Caddyfile /etc/caddy/Caddyfile
+
+COPY start.sh /usr/src/
+RUN chmod +x /usr/src/start.sh
+
+CMD [ "/bin/bash", "/usr/src/start.sh" ]

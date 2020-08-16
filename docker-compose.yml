@@ -1,6 +1,7 @@
 version: '2'
 
 services:
+
   unifi:
     build: ./unifi
     restart: on-failure
@@ -15,5 +16,17 @@ services:
       - unifi:/usr/lib/unifi/run
       - unifi:/usr/lib/unifi/log
 
+  caddy:
+    build: ./caddy
+    restart: on-failure
+    ports:
+      - 80:80
+      - 443:443
+      - 11081:11081
+    volumes:
+      - www-data:/var/www
+
 volumes:
+
   unifi:
+  www-data:
