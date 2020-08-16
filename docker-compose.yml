@@ -6,33 +6,22 @@ services:
     build: ./unifi
     restart: on-failure
     ports:
+      - 80:80
+      - 443:443
       - 8080:8080
-      - 8081:8081
-      - 8443:8443
-      - 8843:8843 
-      - 8880:8880
     volumes:
       - unifi:/usr/lib/unifi/data
       - unifi:/usr/lib/unifi/run
       - unifi:/usr/lib/unifi/log
-
-  caddy:
-    build: ./caddy
-    restart: on-failure
-    ports:
-      - 80:80
-      - 443:443
-      - 11081:11081
-    volumes:
       - www-data:/var/www
 
-  spotify:
-    build: ./balena-sound/spotify
-    restart: on-failure
-    network_mode: host
-    privileged: true
-    volumes:
-      - spotifycache:/var/cache/raspotify
+#  spotify:
+#    build: ./balena-sound/spotify
+#    restart: on-failure
+#    network_mode: host
+#    privileged: true
+#    volumes:
+#      - spotifycache:/var/cache/raspotify
 
 volumes:
 

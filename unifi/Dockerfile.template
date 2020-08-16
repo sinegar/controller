@@ -1,9 +1,10 @@
 FROM balenalib/%%BALENA_MACHINE_NAME%%-debian-openjdk:8
 
-RUN	\ 
+RUN	install_packages  apt-transport-https && \ 
 	curl -o /etc/apt/trusted.gpg.d/unifi-repo.gpg https://dl.ui.com/unifi/unifi-repo.gpg && \
 	echo 'deb http://www.ui.com/downloads/unifi/debian stable ubiquiti' | tee /etc/apt/sources.list.d/unifi.list && \
-	install_packages mongodb-server unifi  
+	echo "deb [trusted=yes] https://apt.fury.io/caddy/ /"  | sudo tee -a /etc/apt/sources.list.d/caddy-fury.list && \
+	install_packages caddy mongodb-server unifi  
 
 WORKDIR  /usr/lib/unifi
 
