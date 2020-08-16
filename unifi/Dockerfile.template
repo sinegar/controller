@@ -1,4 +1,4 @@
-FROM balenalib/%%BALENA_MACHINE_NAME%%-debian-openjdk:8-buster
+FROM balenalib/%%BALENA_MACHINE_NAME%%-debian-openjdk:8
 
 RUN	\ 
 	curl -o /etc/apt/trusted.gpg.d/unifi-repo.gpg https://dl.ui.com/unifi/unifi-repo.gpg && \
